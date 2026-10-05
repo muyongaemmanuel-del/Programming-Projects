@@ -1,31 +1,90 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main()
-{   int correctPin=9999;
-    int userPin;
-    int count=0;
-    printf("DOOR LOCK SYSTEM\n");
-    while(count<3){
-    printf("Please Enter userPin");
-    scanf("%d",&userPin);
-    if(userPin==correctPin)
+{
+    int pin;
+    int correctPin = 9999;
+    int attempts = 3;
+    int choice;
+
+    while (attempts > 0)
     {
-        printf("Access Granted!\n");
-        printf("Door Unlocked.\n");
-        break;
+        printf("Enter 4-digit PIN: ");
+        scanf("%d", &pin);
+
+        // Validate PIN length //
+        if (pin < 1000)
+        {
+            printf("PIN is too short (must be 4 digits)\n");
+        }
+        else if (pin > 9999)
+        {
+            printf("PIN is too long (must be 4 digits)\n");
+        }
+        else
+        {
+            printf("PIN is exactly 4 digits\n");
+
+            // Check if PIN is correct //
+            if (pin == correctPin)
+            {
+                printf("\nAccess Granted!\n");
+
+                printf("\n=== Device Menu ===\n");
+                printf("1. Open Door\n");
+                printf("2. Change Username\n");
+                printf("3. Change PIN\n");
+                printf("4. Exit\n");
+
+                printf("Enter your choice: ");
+                scanf("%d", &choice);
+
+                switch (choice)
+                {
+                    case 1:
+                        printf("Access granted. Door unlocked.\n");
+                        break;
+
+                    case 2:
+                        printf("Change username feature coming soon.\n");
+                        break;
+
+                    case 3:
+                        printf("Change PIN feature coming soon.\n");
+                        break;
+
+                    case 4:
+                        printf("Exiting system.\n");
+                        break;
+
+                    default:
+                        printf("Invalid option! Please try again.\n");
+                }
+
+                return 0;
+            }
+            else
+            {
+                attempts--;
+
+                if (attempts > 0)
+                {
+                    printf("Incorrect PIN! Remaining attempts: %d\n",
+                           attempts);
+                }
+            }
+        }
     }
-    else
-    { count++;
-        printf("IncorrectPin!\n");
-        printf("Attempts remaining:%d\n\n",3-count);
-    }
-    }
-    if(count==3)
+
+    // Lockout after 3 attempts //
+    printf("\nSystem locked! Wait for 5 seconds...\n");
+
+    for (int i = 5; i >= 1; i--)
     {
-        printf("\nToo many incorrect attempts!\n");
-        printf("Access Denied.\n");
-        printf("Door Locked.\n");
+        printf("%d...\n", i);
     }
+
+    printf("You can try again now.\n");
+
     return 0;
 }
