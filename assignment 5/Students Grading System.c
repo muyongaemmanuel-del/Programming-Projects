@@ -48,7 +48,7 @@ int main()
             gradeNumber = 5;
         }
 
-        // Determine grade using switch //
+        /* Determine grade using switch */
         switch (gradeNumber)
         {
             case 1:
@@ -75,14 +75,14 @@ int main()
                 grade = 'F';
         }
 
-        // Display student information //
+        /* Display student information */
         printf("\n===== Student Results =====\n");
         printf("Registration Number: %d\n", registrationNumber);
         printf("Name: %s\n", name);
         printf("Marks: %d\n", marks);
         printf("Grade: %c\n", grade);
 
-        // Pass or fail //
+        /* Pass or fail */
         if (marks >= 40)
         {
             printf("Status: Pass\n");
